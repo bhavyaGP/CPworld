@@ -1,0 +1,3 @@
+# add .exe for file
+*.exe
+./vscode
