@@ -12,9 +12,10 @@ vector<string> arrangeAuthors(vector<vector<string>> &s)
             {
                 ans.push_back(to_string(i + 1) + ". " + s[i][j]);
             }
-            else{
+            else
+            {
                 string bookname = string(1, 'A' + (j - 1)) + ". " + s[i][j];
-            ans.push_back(bookname);
+                ans.push_back(bookname);
             }
         }
     }
