@@ -29,5 +29,6 @@ int main()
         }
         high++;
     }
+    
     cout << maxcount << endl;
 }
