@@ -1,31 +1,24 @@
 class Solution {
 public:
-    int cntzero(string s) {
-        int cnt = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == '0') {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
-    int cntone(string s) {
-        int cnt = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == '1') {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
     int maxScore(string str) {
-        int maxi = 0;
-        int n = str.length();
-        for (int i = 0; i < n - 1; i++) {
-            int sum = cntzero(str.substr(0, i + 1)) +
-                      cntone(str.substr(i + 1, n - i - 1));
+        int ttlone = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str[i] == '1') {
+                ttlone++;
+            }
+        }
 
-            maxi = max(maxi, sum);
+        int leftzr = 0;
+        int leftone = 0;
+        int maxi = 0;
+        for (int i = 0; i < str.length()-1; i++) {
+            if (str[i] == '0') {
+                leftzr++;
+            } else {
+                leftone++;
+            }
+            int rightone = ttlone - leftone;
+            maxi = max(maxi, leftzr + rightone);
         }
         return maxi;
     }
