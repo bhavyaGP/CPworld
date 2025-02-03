@@ -1,32 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
+int main(){
 
-int main() {
-    vector<int> arr = {9};
-    vector<int> brr = {-9};
-    long long k = 29;
-    
-    // First calculate cost without any rearrangement
-    long long costWithoutRearrange = 0;
-    for(int i = 0; i < arr.size(); i++) {
-        costWithoutRearrange += abs(arr[i] - brr[i]);
+    int eventime=5,k=2;
+    vector<int> startime={0,1,2,3,4};
+    vector<int> endtime={1,2,3,4,5};
+
+    vector<int> diff;
+    for(int i=0;i<startime.size();i++){
+        diff.push_back(endtime[i]-startime[i]);
     }
     
-    // Calculate cost with rearrangement
-    vector<int> sortedArr = arr;
-    vector<int> sortedBrr = brr;
-    sort(sortedArr.begin(), sortedArr.end());
-    sort(sortedBrr.begin(), sortedBrr.end());
-    
-    long long costWithRearrange = 0;
-    for(int i = 0; i < arr.size(); i++) {
-        costWithRearrange += abs(sortedArr[i] - sortedBrr[i]);
+    int sum=0;
+    for(auto x:diff){
+        sum+=x;
     }
-    costWithRearrange += k;  // Add the rearrangement cost
+    if(sum==eventime){
+        cout<<0<<endl;
+        return 0;
+    }
+    cout<<eventime-sum<<endl;
     
-    // Take minimum of both approaches
-    long long ans = min(costWithoutRearrange, costWithRearrange);
-    
-    cout << ans;
-    return 0;
+
+
 }
