@@ -1,24 +1,32 @@
 class Solution {
 public:
     vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
-        vector<int> ans(2);
-        unordered_map<int, int> mp;
         int n = grid.size();
-        int expected_sum = (n * n * (n * n + 1)) / 2;
-        int actual_sum = 0;
+        int N = n*n;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                int val = grid[i][j];
-                mp[val]++;
-                actual_sum += val;
-                if (mp[val] > 1) {
-                    ans[0] = val;
-                }
+        unordered_map<int, int> mp;
+
+        int a = -1;
+        int b = -1;
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                mp[grid[i][j]]++;
             }
         }
 
-        ans[1] = expected_sum - actual_sum + ans[0]; 
-        return ans;
+        for(int num = 1; num <= N; num++) {
+            if(!mp.count(num)) {
+                b = num;
+            } else if(mp[num] == 2) {
+                a = num;
+            }
+
+            if(a != -1 && b != -1) {
+                break;
+            }
+        }
+
+        return {a, b};
     }
 };
