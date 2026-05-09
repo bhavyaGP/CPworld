@@ -1,18 +1,17 @@
 class Solution {
 public:
-    //space complexity O(n);
     vector<int> leftRightDifference(vector<int>& nums) {
-        int rightsum = 0;
-        for (auto x : nums) {
-            rightsum += x;
-        }
-        int leftsum = 0;
-        vector<int> ans(nums.size());
-        for (int i = 0; i < ans.size(); i++) {
-            rightsum -= nums[i];
-            ans[i] = abs(leftsum - rightsum);
-            leftsum += nums[i];
-        }
+        int n=nums.size();
+        vector<int> prefix(n),suffix(n),ans(n);
+         //prefix
+        prefix[0]=0;
+        for(int i=1;i<n;i++) prefix[i]=prefix[i-1]+nums[i-1];
+        //suffix
+        suffix[n-1]=0;
+        for(int i=n-2;i>=0;i--) suffix[i]=suffix[i+1]+nums[i+1];
+
+        for(int i=0;i<n;i++) ans[i]=abs(prefix[i]-suffix[i]);
+
         return ans;
     }
 };
