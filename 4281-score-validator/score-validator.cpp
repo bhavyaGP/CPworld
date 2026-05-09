@@ -1,23 +1,13 @@
 class Solution {
 public:
-    vector<int> scoreValidator(vector<string>& events) {
-        map<string, int> mp =
-        { {"0", 0},
-          {"1", 1},
-          {"2", 2},
-          {"3", 3},
-          {"4", 4},
-          {"6", 6},
-          {"WD", 1},
-          {"NB", 1} };
+    vector<int> scoreValidator(vector<string>& nums) {
         int score=0,cnt=0;
-        for (auto x : events) {
-            if (mp.find(x)==mp.end()){
-                cnt++;
-                if(cnt==10) break;
-            }else{
-                score+=mp[x];
-            }
+        for(auto x:nums){
+            if(isdigit(x[0])) score+=stoi(x);
+            else if(x=="WD" || x=="NB") score++;
+            else if(x=="W") cnt++;
+            
+            if(cnt==10) break;
         }
         return {score,cnt};
     }
