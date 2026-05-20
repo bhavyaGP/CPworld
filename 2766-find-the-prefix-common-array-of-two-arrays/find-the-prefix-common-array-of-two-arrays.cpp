@@ -5,14 +5,18 @@ public:
         map<int, int> freq;
         int cnt = 0;
         for (int i = 0; i < a.size(); i++) {
+            if(a[i]==b[i]){
+                cnt++;
+            }else{
+                if(freq[a[i]]>0){
+                    cnt++;
+                }
+                if(freq[b[i]]>0){
+                    cnt++;
+                }
+            }
             freq[a[i]]++;
-            if (freq[a[i]] == 2) {
-                cnt++;
-            }
             freq[b[i]]++;
-            if (freq[b[i]] == 2) {
-                cnt++;
-            }
             ans.push_back(cnt);
         }
 
