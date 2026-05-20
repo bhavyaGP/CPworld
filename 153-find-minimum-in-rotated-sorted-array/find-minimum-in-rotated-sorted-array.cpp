@@ -1,15 +1,19 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-      int low = 0, high = nums.size() - 1;
-        while (low < high) {//we have sorted arr we can apply binary search that's why we have selected binary search here but in different way 
-            int mid = low + (high - low) / 2;
-            if (nums[mid] > nums[high]) {
-                low = mid + 1;
-            } else {
-                high = mid;
+        int resultIdx=0;
+        int l=0,r=nums.size()-1;
+        while(l<=r){
+            int mid=l+(r-l)/2;
+            if(nums[mid] < nums[resultIdx]){ //mujhe aur chota element mila 
+                resultIdx=mid;
+            }
+            if(nums[mid]>nums[r]){  //true hai toh min element right side hai
+                l=mid+1;
+            }else{
+                r=mid-1;  // flase hua means min element left side hai
             }
         }
-        return nums[low];
+        return nums[resultIdx];
     }
 };
